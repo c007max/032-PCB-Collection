@@ -11,6 +11,7 @@ public class PCB implements Comparable<PCB>
 	private String	pgmCounter;
 	private int		CPU_used;
 	private int		CPU_max;
+	private int		CPU_left;
 	private int		timeWaiting;
 	private int		memBase ;
 	private int		memLimit ;
@@ -32,6 +33,7 @@ public class PCB implements Comparable<PCB>
 		pgmCounter	= "" ;
 		CPU_used	= 0 ;
 		CPU_max		= random__X.nextInt(50) + 1 ;	// Assign max to be between 1:50
+		CPU_left	= CPU_max ;
 		timeWaiting	= 0 ;
 		memBase	= 0 ;
 		memLimit	= random__X.nextInt(50) + 26 ;	// Assign memory needed between 25:75
@@ -47,6 +49,7 @@ public class PCB implements Comparable<PCB>
 		pgmCounter	= "" ;
 		CPU_used	= 0 ;
 		CPU_max		= 0 ; 
+		CPU_left	= 0 ; 
 		timeWaiting	= 0 ;
 		memBase	= 0 ;
 		memLimit	= m0 ;
@@ -58,9 +61,10 @@ public class PCB implements Comparable<PCB>
 		return "state: " + PCB_state
 			+ "\tID: "	+ Integer.toString(PCB_ID)
 //		//	+ "\tK: "	+ pgmCounter
-//			+ "\tCPU used: "	+ Integer.toString(CPU_used)	
-//			+ "\tCPU max: "	+ Integer.toString(CPU_max)					
-//			+ "\tWait: "	+ Integer.toString(timeWaiting)
+			+ "\tCPU max: "	+ Integer.toString(CPU_max)
+			+ "\tCPU used: "	+ Integer.toString(CPU_used)	
+			+ "\tCPU left: "	+ Integer.toString(CPU_left)
+			+ "\tWait: "	+ Integer.toString(timeWaiting)
 			+ "\tmemBase: "	+ Integer.toString(memBase)
 			+ "\tmemLimit: "+ Integer.toString(memLimit)
 			;
@@ -70,6 +74,11 @@ public class PCB implements Comparable<PCB>
 	{
 		int mem0	= pcb0.get_memBase();
 		return this.memBase - mem0 ;
+	}	
+	
+	public int compareTo (int cpu0) 
+	{
+		return this.CPU_left - cpu0 ;
 	}	
 	
 	//	set methods
@@ -92,6 +101,11 @@ public class PCB implements Comparable<PCB>
 	public int get_CPU_max()
 	{
 		return CPU_max;
+	}	
+	
+	public int get_CPU_left()
+	{
+		return CPU_left;
 	}	
 	
 	public String get_pgmCounter()
@@ -132,6 +146,11 @@ public class PCB implements Comparable<PCB>
 		CPU_used	= CPU0 ;
 	}
 
+	public void set_CPU_left()
+	{
+		CPU_left	= CPU_max - CPU_used ;
+	}
+	
 	public void add_CPU_used(int c0)
 	{
 		CPU_used	+= c0 ;
@@ -166,5 +185,13 @@ public class PCB implements Comparable<PCB>
 	{
 		memLimit = m0 ;
 	}
-
+	
+	class comparator_by_CPU_left implements Comparator<PCB> 
+	{
+	    @Override
+	    public int compare(PCB p1, PCB p2) 
+	    {
+	        return p1.get_CPU_left()	- p2.get_CPU_left(); 
+	    }
+	}
 }

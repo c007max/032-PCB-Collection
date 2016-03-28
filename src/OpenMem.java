@@ -7,16 +7,16 @@ public class OpenMem
 	{}
 	
 	public boolean findOpenMem	(
-			PCB PCB_Ready
-			,LinkedList<PCB> QMemOpen
-			,LinkedList<PCB> QMemUsed	)
+			PCBxxx PCB_Ready
+			,LinkedList<PCBxxx> QMemOpen
+			,LinkedList<PCBxxx> QMemUsed	)
 	{
 		boolean memFound__B = false ;
 			
 		int memNeed = PCB_Ready.get_Limit() ;
 		for (int ii = 0; ii < QMemOpen.size(); ii ++)
 		{
-			PCB memOpen = QMemOpen.get(ii) ;
+			PCBxxx memOpen = QMemOpen.get(ii) ;
 			if (memOpen.get_Limit() > memNeed )
 			{
 				memFound__B = true;
@@ -35,7 +35,7 @@ public class OpenMem
 						);
 					
 				//	allocate the used memory	@@ QMemUsed @@
-				PCB memUsed = new PCB(memNeed) ;
+				PCBxxx memUsed = new PCBxxx(memNeed) ;
 					
 				//	set the base for the process
 				memUsed.set_memBase(base0);
