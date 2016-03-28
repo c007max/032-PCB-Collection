@@ -1,5 +1,4 @@
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList ;
 import java.util.Random ;
 
@@ -35,6 +34,17 @@ public class CollectionsDriver
 			
 			int event__X	= ce.get_CPU_event() ;
 			
+			PCB_Ready.add_CPU_used(random__X.nextInt(15) +1);
+			
+			if (PCB_Ready.get_CPU_used() > PCB_Ready.get_CPU_max())
+			{
+				System.out.printf("\t##### process: %d\tCPU max: %d\t####\n"
+						,PCB_Ready.get_ID()
+						,PCB_Ready.get_CPU_used()
+						);
+				continue;
+			}
+
 			if (event__X == 1)
 			{
 				System.out.printf("\t##### process %d completed\t####\n"

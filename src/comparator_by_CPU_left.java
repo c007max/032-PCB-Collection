@@ -1,6 +1,5 @@
 import java.util.Comparator;
 
-
 class comparator_by_CPU_left implements Comparator<PCB> 
 {
     @Override

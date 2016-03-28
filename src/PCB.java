@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.LinkedList	;
 import java.util.Random ;
 
-public class PCB implements Comparable<PCB>
+public class PCB implements Comparator<PCB>
 {
 	private String 	PCB_state;
 	private int		PCB_ID ;
@@ -36,7 +36,7 @@ public class PCB implements Comparable<PCB>
 		CPU_left	= CPU_max ;
 		timeWaiting	= 0 ;
 		memBase	= 0 ;
-		memLimit	= random__X.nextInt(50) + 26 ;	// Assign memory needed between 25:75
+		memLimit	= random__X.nextInt(25) + 26 ;	// Assign memory needed between 25:50
 	}	
 	
 	// constructor for memory tracking
@@ -146,14 +146,15 @@ public class PCB implements Comparable<PCB>
 		CPU_used	= CPU0 ;
 	}
 
-	public void set_CPU_left()
-	{
-		CPU_left	= CPU_max - CPU_used ;
-	}
+//	public void set_CPU_left()
+//	{
+//		CPU_left	= CPU_max - CPU_used ;
+//	}
 	
 	public void add_CPU_used(int c0)
 	{
 		CPU_used	+= c0 ;
+		CPU_left	= CPU_max	- CPU_used;
 	}
 	
 	public void set_CPU_max(int CPU0)
@@ -184,14 +185,5 @@ public class PCB implements Comparable<PCB>
 	public void set_memLimit (int m0)
 	{
 		memLimit = m0 ;
-	}
-	
-	class comparator_by_CPU_left implements Comparator<PCB> 
-	{
-	    @Override
-	    public int compare(PCB p1, PCB p2) 
-	    {
-	        return p1.get_CPU_left()	- p2.get_CPU_left(); 
-	    }
 	}
 }
