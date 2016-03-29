@@ -47,6 +47,11 @@ public class CollectionsDriver
 				,PCB_Ready.showPCB()
 				);			
 		
+		System.out.println("\t***** Shuffled *****");
+		Collections.shuffle(QReady, random__X);
+		for (PCB loopI : QReady)
+			System.out.printf("%s\n"	,loopI.showPCB()) ;
+		
 //		        Collections.sort(QReady, new comparator_by_CPU_left());
 //		        PCB_Ready	= Collections.max(QReady, PCB_Ready);
 //		        System.out.printf("@@ max: %s @@\n"
