@@ -76,11 +76,6 @@ public class PCB implements Comparator<PCB>
 		return this.memBase - mem0 ;
 	}	
 	
-	public int compareTo (int cpu0) 
-	{
-		return this.CPU_left - cpu0 ;
-	}	
-	
 	//	set methods
 	
 	public String get_state()
@@ -185,5 +180,11 @@ public class PCB implements Comparator<PCB>
 	public void set_memLimit (int m0)
 	{
 		memLimit = m0 ;
+	}
+
+	@Override
+	public int compare(PCB arg0, PCB arg1) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

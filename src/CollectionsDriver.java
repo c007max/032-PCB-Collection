@@ -23,41 +23,75 @@ public class CollectionsDriver
 		
 		for (PCB loopI : QReady)
 			System.out.printf("%s\n"	,loopI.showPCB()) ;
+		System.out.println("");
+		
+		Collections.sort(QReady, new comparator_by_CPU_left());
+		
+		for (PCB loopI : QReady)
+			System.out.printf("@CPUleft\t%s\n"	,loopI.showPCB()) ;		
+		System.out.println("");
+
+		Collections.sort(QReady, new comparator_by_memLimit());
+		
+		for (PCB loopI : QReady)
+			System.out.printf("@memLimit\t%s\n"	,loopI.showPCB()) ;		
+		System.out.println("");
+		
+		PCB_Ready	= Collections.max(QReady , new comparator_by_memLimit());
+		System.out.printf("@max: %s\n"
+				,PCB_Ready.showPCB()
+				);
+
+		PCB_Ready	= Collections.min(QReady , new comparator_by_memLimit());
+		System.out.printf("@min: %s\n"
+				,PCB_Ready.showPCB()
+				);			
+		
+//		        Collections.sort(QReady, new comparator_by_CPU_left());
+//		        PCB_Ready	= Collections.max(QReady, PCB_Ready);
+//		        System.out.printf("@@ max: %s @@\n"
+//		        		,PCB_Ready.showPCB()
+//		        		);
 		
 		//	End of Initialization \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
    	
 		//#0100	Iterator Interface	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 						
-		while (!QReady.isEmpty())		
-		{
-			PCB_Ready = QReady.removeFirst() ;
-			
-			int event__X	= ce.get_CPU_event() ;
-			
-			PCB_Ready.add_CPU_used(random__X.nextInt(15) +1);
-			
-			if (PCB_Ready.get_CPU_used() > PCB_Ready.get_CPU_max())
-			{
-				System.out.printf("\t##### process: %d\tCPU max: %d\t####\n"
-						,PCB_Ready.get_ID()
-						,PCB_Ready.get_CPU_used()
-						);
-				continue;
-			}
-
-			if (event__X == 1)
-			{
-				System.out.printf("\t##### process %d completed\t####\n"
-						,PCB_Ready.get_ID()
-						);
-				continue;
-			}
-			else
-				QReady.addLast(PCB_Ready) ;
-			
-	        Collections.sort(QReady, new comparator_by_CPU_left());
-	        
-			for (PCB loopI : QReady)
-				System.out.printf("%s\n"	,loopI.showPCB()) ;		}
+//		while (!QReady.isEmpty())		
+//		{
+//			PCB_Ready = QReady.removeFirst() ;
+//			
+//			int event__X	= ce.get_CPU_event() ;
+//			
+//			PCB_Ready.add_CPU_used(random__X.nextInt(15) +1);
+//			
+//			if (PCB_Ready.get_CPU_used() > PCB_Ready.get_CPU_max())
+//			{
+//				System.out.printf("\t##### process: %d\tCPU max: %d\t####\n"
+//						,PCB_Ready.get_ID()
+//						,PCB_Ready.get_CPU_used()
+//						);
+//				continue;
+//			}
+//
+//			if (event__X == 1)
+//			{
+//				System.out.printf("\t##### process %d completed\t####\n"
+//						,PCB_Ready.get_ID()
+//						);
+//				continue;
+//			}
+//			else
+//				QReady.addLast(PCB_Ready) ;
+//			
+//	        Collections.sort(QReady, new comparator_by_CPU_left());
+//	        PCB_Ready	= Collections.max(QReady, PCB_Ready);
+//	        System.out.printf("@@ max: %s @@\n"
+//	        		,PCB_Ready.showPCB()
+//	        		);
+//	        
+//			for (PCB loopI : QReady)
+//				System.out.printf("%s\n"	,loopI.showPCB()) ;		
+//		}
 	}
 }
